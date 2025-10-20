@@ -8,11 +8,11 @@ globs: *.test.ts,*.spec.ts,*_test.ts,**/_spec.ts
 
 ## Quick Navigation
 
-- 🚀 [Velocity Hub](mdc:.cursor/rules/velocity.mdc) - Start here
-- 🔧 [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) - Test coverage suggestions
-- 🧰 [Bun-First Standards](mdc:.cursor/rules/bun-first.mdc) - Bun development
-- 🏗️ [MCP Servers](mdc:.cursor/rules/mcp-servers.mdc) - Server test patterns
-- 📘 [TypeScript](mdc:.cursor/rules/typescript.mdc) - Type safety in tests
+- 🚀 [Velocity Hub](mdc:.cursor/rules/00-velocity-hub.mdc) - Start here
+- 🔧 [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) - Test coverage suggestions
+- 🧰 [Bun-First Standards](mdc:.cursor/rules/03-bun-development.mdc) - Bun development
+- 🏗️ [MCP Servers](mdc:.cursor/rules/21-mcp-servers.mdc) - Server test patterns
+- 📘 [TypeScript](mdc:.cursor/rules/10-typescript.mdc) - Type safety in tests
 
 ## Core Testing Principle
 
@@ -302,7 +302,7 @@ describe("Async Operations", () => {
     await expect(
       Promise.race([
         longOperation(),
-        new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), timeout))
+        new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), timeout)),
       ])
     ).rejects.toThrow("Timeout");
   });
@@ -357,8 +357,8 @@ bun test --coverage
 
 ## See Also
 
-- [Velocity Hub](mdc:.cursor/rules/velocity.mdc) - Complete workflow guide
-- [Bun-First Standards](mdc:.cursor/rules/bun-first.mdc) - Bun development patterns
-- [MCP Servers](mdc:.cursor/rules/mcp-servers.mdc) - Server implementation patterns
-- [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) - Test coverage suggestions
-- [TypeScript](mdc:.cursor/rules/typescript.mdc) - Type safety in tests
+- [Velocity Hub](mdc:.cursor/rules/00-velocity-hub.mdc) - Complete workflow guide
+- [Bun-First Standards](mdc:.cursor/rules/03-bun-development.mdc) - Bun development patterns
+- [MCP Servers](mdc:.cursor/rules/21-mcp-servers.mdc) - Server implementation patterns
+- [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) - Test coverage suggestions
+- [TypeScript](mdc:.cursor/rules/10-typescript.mdc) - Type safety in tests

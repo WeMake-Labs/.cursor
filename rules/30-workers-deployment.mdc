@@ -1,5 +1,6 @@
 ---
-alwaysApply: true
+description: This rule consolidates all deployment knowledge: Workers compatibility, remote MCP setup, OAuth authentication, and production deployment workflows.
+alwaysApply: false
 ---
 
 # Cloudflare Workers Deployment - Complete Guide
@@ -11,11 +12,11 @@ production deployment workflows.
 
 ## Quick Navigation
 
-- 🚀 [Velocity Hub](mdc:.cursor/rules/velocity.mdc) - Start here
-- 🔧 [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) - Pre-deployment checks
-- 🧰 [Bun-First Standards](mdc:.cursor/rules/bun-first.mdc) - Local development
-- 📚 [MCP Protocol](mdc:.cursor/rules/mcp-protocol.mdc) - MCP server patterns
-- 🏢 [Enterprise Standards](mdc:.cursor/rules/enterprise-standards.mdc) - Security & GDPR
+- 🚀 [Velocity Hub](mdc:.cursor/rules/00-velocity-hub.mdc) - Start here
+- 🔧 [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) - Pre-deployment checks
+- 🧰 [Bun-First Standards](mdc:.cursor/rules/03-bun-development.mdc) - Local development
+- 📚 [MCP Protocol](mdc:.cursor/rules/20-mcp-protocol.mdc) - MCP server patterns
+- 🏢 [Enterprise Standards](mdc:.cursor/rules/02-enterprise-standards.mdc) - Security & GDPR
 
 ## Local to Workers Workflow
 
@@ -94,7 +95,7 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const result = await env.DB.prepare("SELECT * FROM users").all();
     return Response.json(result);
-  }
+  },
 };
 ```
 
@@ -110,7 +111,7 @@ export default {
     await env.KV.put("key", "value");
     const value = await env.KV.get("key");
     return new Response(value);
-  }
+  },
 };
 ```
 
@@ -118,10 +119,7 @@ export default {
 
 ```typescript
 export class MyDurableObject {
-  constructor(
-    private state: DurableObjectState,
-    private env: Env
-  ) {}
+  constructor(private state: DurableObjectState, private env: Env) {}
 
   async fetch(request: Request): Promise<Response> {
     // Maintain state across requests
@@ -159,7 +157,7 @@ export default {
     // Download file
     const object = await env.BUCKET.get("file.txt");
     return new Response(object?.body);
-  }
+  },
 };
 ```
 
@@ -198,7 +196,7 @@ export default {
       server.setRequestHandler(ListToolsRequestSchema, async () => ({
         tools: [
           /* tool definitions */
-        ]
+        ],
       }));
 
       const transport = new SSEServerTransport("/messages", request);
@@ -207,7 +205,7 @@ export default {
     }
 
     return new Response("Not Found", { status: 404 });
-  }
+  },
 };
 ```
 
@@ -293,7 +291,7 @@ export default new OAuthProvider({
   defaultHandler: GitHubHandler,
   authorizeEndpoint: "/authorize",
   tokenEndpoint: "/token",
-  clientRegistrationEndpoint: "/register"
+  clientRegistrationEndpoint: "/register",
 });
 ```
 
@@ -335,7 +333,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {
       user: userContext.id,
       action: "delete_data",
       timestamp: new Date().toISOString(),
-      args: args
+      args: args,
     });
   }
 
@@ -398,7 +396,7 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     // Handle HTTP requests
     return new Response("OK");
-  }
+  },
 };
 ```
 
@@ -623,7 +621,7 @@ export interface Env {
 export default {
   async fetch(request: Request, env: Env) {
     const secret = env.GITHUB_CLIENT_SECRET;
-  }
+  },
 };
 
 // ❌ NEVER do this
@@ -658,15 +656,15 @@ export default {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type, Authorization",
-          "Access-Control-Max-Age": "86400"
-        }
+          "Access-Control-Max-Age": "86400",
+        },
       });
     }
 
     const response = await handleRequest(request, env);
     response.headers.set("Access-Control-Allow-Origin", "*");
     return response;
-  }
+  },
 };
 ```
 
@@ -689,7 +687,7 @@ const clientIP = request.headers.get("CF-Connecting-IP") || "unknown";
 const limiter = new RateLimiter({
   namespace: env.RATE_LIMITER,
   limit: 100, // requests per window
-  window: 3600 // 1 hour in seconds
+  window: 3600, // 1 hour in seconds
 });
 
 const { success } = await limiter.limit(clientIP);
@@ -793,11 +791,13 @@ Configure in repository settings:
 Converting existing stdio MCP servers to remote (SSE) deployment:
 
 - [ ] **Transport Layer**
+
   - [ ] Replace `StdioServerTransport` with `SSEServerTransport`
   - [ ] Update server initialization to export fetch handler
   - [ ] Add `/sse` endpoint routing
 
 - [ ] **Authentication**
+
   - [ ] Choose OAuth provider
   - [ ] Create development OAuth app
   - [ ] Create production OAuth app
@@ -805,18 +805,21 @@ Converting existing stdio MCP servers to remote (SSE) deployment:
   - [ ] Add user context to tool handlers
 
 - [ ] **Configuration**
+
   - [ ] Create `wrangler.toml` in server directory
   - [ ] Configure environment variables
   - [ ] Set up `.dev.vars` (add to .gitignore)
   - [ ] Document required secrets
 
 - [ ] **Build Configuration**
+
   - [ ] Update `package.json` scripts
   - [ ] Configure Bun build with `--target=browser`
   - [ ] Verify single-file bundle output
   - [ ] Test Workers compatibility
 
 - [ ] **Local Testing**
+
   - [ ] Start dev server: `bun run dev`
   - [ ] Launch MCP Inspector
   - [ ] Connect to `http://localhost:8787/sse`
@@ -824,24 +827,28 @@ Converting existing stdio MCP servers to remote (SSE) deployment:
   - [ ] Verify all tools work
 
 - [ ] **Deployment**
+
   - [ ] Build for production: `bun run build`
   - [ ] Deploy: `bunx wrangler deploy --env production`
   - [ ] Set production secrets
   - [ ] Verify deployment URL
 
 - [ ] **Production Testing**
+
   - [ ] Test with MCP Inspector on production URL
   - [ ] Verify OAuth flow in production
   - [ ] Test all tools
   - [ ] Monitor logs: `bunx wrangler tail`
 
 - [ ] **Client Configuration**
+
   - [ ] Configure Claude Desktop with `mcp-remote`
   - [ ] Configure Cursor MCP settings
   - [ ] Test from each client
   - [ ] Verify OAuth persistence
 
 - [ ] **Security Audit**
+
   - [ ] No secrets in source code
   - [ ] Separate dev/prod OAuth apps
   - [ ] CORS configuration reviewed
@@ -932,7 +939,7 @@ bun run check                           # TypeScript validation
 
 ## See Also
 
-- [Bun-First Standards](mdc:.cursor/rules/bun-first.mdc) - Local development patterns
-- [MCP Protocol](mdc:.cursor/rules/mcp-protocol.mdc) - MCP server architecture
-- [Enterprise Standards](mdc:.cursor/rules/enterprise-standards.mdc) - Security & GDPR
-- [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) - Pre-deployment checks
+- [Bun-First Standards](mdc:.cursor/rules/03-bun-development.mdc) - Local development patterns
+- [MCP Protocol](mdc:.cursor/rules/20-mcp-protocol.mdc) - MCP server architecture
+- [Enterprise Standards](mdc:.cursor/rules/02-enterprise-standards.mdc) - Security & GDPR
+- [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) - Pre-deployment checks

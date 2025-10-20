@@ -6,20 +6,19 @@ alwaysApply: true
 
 > **Your single entry point for maximum development velocity**
 
-This rule reduces cognitive overhead by providing instant context for all development workflows in the WeMake MCP
-monorepo.
+This rule reduces cognitive overhead by providing instant context for all development workflows in the WeMake MCP monorepo.
 
 ## Quick Navigation
 
-- 🔧 [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) - AI-suggested fixes and improvements
-- ☁️ [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc) - Complete deployment guide
-- 🧰 [Bun-First Standards](mdc:.cursor/rules/bun-first.mdc) - Bun development standards
-- 📚 [MCP Protocol](mdc:.cursor/rules/mcp-protocol.mdc) - MCP server standards
-- 🏗️ [MCP Servers](mdc:.cursor/rules/mcp-servers.mdc) - Implementation patterns
-- 📖 [Documentation](mdc:.cursor/rules/documentation.mdc) - Documentation standards
-- 🏢 [Enterprise Standards](mdc:.cursor/rules/enterprise-standards.mdc) - Quality & security
-- 🧪 [Testing](mdc:.cursor/rules/testing.mdc) - Testing standards
-- 📘 [TypeScript](mdc:.cursor/rules/typescript.mdc) - TypeScript standards
+- 🔧 [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) - AI-suggested fixes and improvements
+- ☁️ [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc) - Complete deployment guide
+- 🧰 [Bun-First Standards](mdc:.cursor/rules/03-bun-development.mdc) - Bun development standards
+- 📚 [MCP Protocol](mdc:.cursor/rules/20-mcp-protocol.mdc) - MCP server standards
+- 🏗️ [MCP Servers](mdc:.cursor/rules/21-mcp-servers.mdc) - Implementation patterns
+- 📖 [Documentation](mdc:.cursor/rules/12-documentation.mdc) - Documentation standards
+- 🏢 [Enterprise Standards](mdc:.cursor/rules/02-enterprise-standards.mdc) - Quality & security
+- 🧪 [Testing](mdc:.cursor/rules/11-testing.mdc) - Testing standards
+- 📘 [TypeScript](mdc:.cursor/rules/10-typescript.mdc) - TypeScript standards
 
 ## Quick Start Matrix
 
@@ -44,34 +43,33 @@ monorepo.
 
 **If you're creating a NEW MCP server:**
 
-1. Check [MCP Servers](mdc:.cursor/rules/mcp-servers.mdc) for architecture patterns
-2. Use [MCP Protocol](mdc:.cursor/rules/mcp-protocol.mdc) for tool handler setup
-3. Follow [Documentation](mdc:.cursor/rules/documentation.mdc) for README template
-4. Request [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) for boilerplate generation
+1. Check [MCP Servers](mdc:.cursor/rules/21-mcp-servers.mdc) for architecture patterns
+2. Use [MCP Protocol](mdc:.cursor/rules/20-mcp-protocol.mdc) for tool handler setup
+3. Follow [Documentation](mdc:.cursor/rules/12-documentation.mdc) for README template
+4. Request [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) for boilerplate generation
 
 **If you're modifying EXISTING code:**
 
 1. Run tests first: `bun test` to establish baseline
-2. Make changes with [Enterprise Standards](mdc:.cursor/rules/enterprise-standards.mdc) in mind
-3. Use [TypeScript](mdc:.cursor/rules/typescript.mdc) patterns for type safety
-4. Request [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) for fixes
+2. Make changes with [Enterprise Standards](mdc:.cursor/rules/02-enterprise-standards.mdc) in mind
+3. Use [TypeScript](mdc:.cursor/rules/10-typescript.mdc) patterns for type safety
+4. Request [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) for fixes
 
 **If you're preparing for DEPLOYMENT:**
 
-1. Consult [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc) checklist
-2. Verify [Testing](mdc:.cursor/rules/testing.mdc) coverage (80%+ required)
-3. Review [Enterprise Standards](mdc:.cursor/rules/enterprise-standards.mdc) security
+1. Consult [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc) checklist
+2. Verify [Testing](mdc:.cursor/rules/11-testing.mdc) coverage (80%+ required)
+3. Review [Enterprise Standards](mdc:.cursor/rules/02-enterprise-standards.mdc) security
 4. Build with `bun run build` and validate output
 
 ### Current Phase Detection
 
 The AI will automatically detect your current phase based on:
 
-- **Local Development**: Working in `src/*/src/` files → Focus on [Bun-First Standards](mdc:.cursor/rules/bun-first.mdc)
-- **Testing**: Working in `*.test.ts` files → Focus on [Testing](mdc:.cursor/rules/testing.mdc)
-- **Documentation**: Working in `*.md` files → Focus on [Documentation](mdc:.cursor/rules/documentation.mdc)
-- **Deployment**: Working with `wrangler.toml` or `worker.ts` → Focus on
-  [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc)
+- **Local Development**: Working in `src/*/src/` files → Focus on [Bun-First Standards](mdc:.cursor/rules/03-bun-development.mdc)
+- **Testing**: Working in `*.test.ts` files → Focus on [Testing](mdc:.cursor/rules/11-testing.mdc)
+- **Documentation**: Working in `*.md` files → Focus on [Documentation](mdc:.cursor/rules/12-documentation.mdc)
+- **Deployment**: Working with `wrangler.toml` or `worker.ts` → Focus on [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc)
 
 ## Cognitive Load Reducers
 
@@ -146,7 +144,7 @@ class MyMCPServer {
       // Handle errors gracefully
       return {
         content: [{ type: "text", text: `❌ Error: ${error.message}` }],
-        isError: true
+        isError: true,
       };
     }
   }
@@ -195,27 +193,30 @@ describe("MyServer", () => {
 
 ## Self-Healing Suggestions
 
-When the AI detects issues, it will suggest fixes following
-[Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc):
+When the AI detects issues, it will suggest fixes following [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc):
 
 ### Suggested Fix Categories
 
 1. **Import Organization** (Safe auto-suggest)
+
    - Missing imports
    - Unused imports
    - Import order optimization
 
 2. **Type Improvements** (Review recommended)
+
    - Type inference opportunities
    - Missing type annotations
    - `any` type replacements
 
 3. **Error Handling** (Review required)
+
    - Missing try-catch blocks
    - Unhandled promise rejections
    - Edge case validation
 
 4. **Test Coverage** (Guidance provided)
+
    - Missing test cases
    - Uncovered branches
    - Edge case tests
@@ -271,7 +272,7 @@ import { CallToolRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 2. **DON'T skip tests** → 80%+ coverage required
 3. **DON'T commit without formatting** → Run `bun run format`
 4. **DON'T use `any` without documentation** → Prefer `unknown` + type guards
-5. **DON'T forget Workers compatibility** → Check [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc)
+5. **DON'T forget Workers compatibility** → Check [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc)
 
 ## Pre-Deployment Checklist
 
@@ -281,27 +282,27 @@ Before deploying to Cloudflare Workers, verify:
 - [ ] No linter errors: `bun run lint`
 - [ ] TypeScript validates: `bun run check`
 - [ ] Code formatted: `bun run format`
-- [ ] Workers compatibility verified (see [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc))
+- [ ] Workers compatibility verified (see [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc))
 - [ ] No Bun-only APIs in Workers build
 - [ ] Environment variables documented
 - [ ] Secrets configured (not in code)
 - [ ] README updated
 - [ ] wrangler.toml configured
 
-See complete checklist in [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc).
+See complete checklist in [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc).
 
 ## When to Consult Specialized Rules
 
-| Scenario                | Consult Rule                                                           | Why                                 |
-| ----------------------- | ---------------------------------------------------------------------- | ----------------------------------- |
-| Creating new MCP server | [MCP Servers](mdc:.cursor/rules/mcp-servers.mdc)                       | Architecture patterns and templates |
-| Adding MCP tool         | [MCP Protocol](mdc:.cursor/rules/mcp-protocol.mdc)                     | Tool schema and handler patterns    |
-| Writing tests           | [Testing](mdc:.cursor/rules/testing.mdc)                               | Bun test runner patterns            |
-| TypeScript types        | [TypeScript](mdc:.cursor/rules/typescript.mdc)                         | Type safety patterns                |
-| Deploying to Workers    | [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc)         | Complete deployment guide           |
-| Writing documentation   | [Documentation](mdc:.cursor/rules/documentation.mdc)                   | README templates                    |
-| Security/GDPR           | [Enterprise Standards](mdc:.cursor/rules/enterprise-standards.mdc)     | Compliance requirements             |
-| AI suggestions          | [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) | Fix patterns                        |
+| Scenario                | Consult Rule                                                              | Why                                 |
+| ----------------------- | ------------------------------------------------------------------------- | ----------------------------------- |
+| Creating new MCP server | [MCP Servers](mdc:.cursor/rules/21-mcp-servers.mdc)                       | Architecture patterns and templates |
+| Adding MCP tool         | [MCP Protocol](mdc:.cursor/rules/20-mcp-protocol.mdc)                     | Tool schema and handler patterns    |
+| Writing tests           | [Testing](mdc:.cursor/rules/11-testing.mdc)                               | Bun test runner patterns            |
+| TypeScript types        | [TypeScript](mdc:.cursor/rules/10-typescript.mdc)                         | Type safety patterns                |
+| Deploying to Workers    | [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc)         | Complete deployment guide           |
+| Writing documentation   | [Documentation](mdc:.cursor/rules/12-documentation.mdc)                   | README templates                    |
+| Security/GDPR           | [Enterprise Standards](mdc:.cursor/rules/02-enterprise-standards.mdc)     | Compliance requirements             |
+| AI suggestions          | [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) | Fix patterns                        |
 
 ## Performance & Quality Standards
 
@@ -415,5 +416,4 @@ This Velocity Hub provides:
 - ✅ Pre-deployment validation
 - ✅ Emergency quick reference
 
-Start here, then navigate to specialized rules as needed. The AI will guide you through the complete workflow while
-maintaining enterprise-grade quality.
+Start here, then navigate to specialized rules as needed. The AI will guide you through the complete workflow while maintaining enterprise-grade quality.

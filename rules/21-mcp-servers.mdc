@@ -1,5 +1,6 @@
 ---
-globs: src/*/src/index.ts
+description: MCP Server Implementation Patterns
+alwaysApply: false
 ---
 
 # MCP Server Implementation Patterns
@@ -8,11 +9,11 @@ globs: src/*/src/index.ts
 
 ## Quick Navigation
 
-- 🚀 [Velocity Hub](mdc:.cursor/rules/velocity.mdc) - Start here
-- 📚 [MCP Protocol](mdc:.cursor/rules/mcp-protocol.mdc) - MCP standards
-- 🔧 [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) - Boilerplate generation
-- 🧪 [Testing](mdc:.cursor/rules/testing.mdc) - Testing patterns
-- 📖 [Documentation](mdc:.cursor/rules/documentation.mdc) - README templates
+- 🚀 [Velocity Hub](mdc:.cursor/rules/00-velocity-hub.mdc) - Start here
+- 📚 [MCP Protocol](mdc:.cursor/rules/20-mcp-protocol.mdc) - MCP standards
+- 🔧 [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) - Boilerplate generation
+- 🧪 [Testing](mdc:.cursor/rules/11-testing.mdc) - Testing patterns
+- 📖 [Documentation](mdc:.cursor/rules/12-documentation.mdc) - README templates
 
 ## Standard MCP Server Structure
 
@@ -209,12 +210,12 @@ async function runServer() {
   const server = new Server(
     {
       name: "my-mcp-server",
-      version: "1.0.0"
+      version: "1.0.0",
     },
     {
       capabilities: {
-        tools: {}
-      }
+        tools: {},
+      },
     }
   );
 
@@ -241,12 +242,12 @@ async function runServer() {
         inputSchema: {
           type: "object",
           properties: {
-            field: { type: "string", description: "Field description" }
+            field: { type: "string", description: "Field description" },
           },
-          required: ["field"]
-        }
-      }
-    ]
+          required: ["field"],
+        },
+      },
+    ],
   }));
 
   // Shutdown handlers
@@ -372,7 +373,7 @@ class BasicServer {
     } catch (error) {
       return {
         content: [{ type: "text", text: `Error: ${error.message}` }],
-        isError: true
+        isError: true,
       };
     }
   }
@@ -435,8 +436,8 @@ Study these for patterns:
 
 ## See Also
 
-- [Velocity Hub](mdc:.cursor/rules/velocity.mdc) - Complete workflow guide
-- [MCP Protocol](mdc:.cursor/rules/mcp-protocol.mdc) - MCP standards and tool handlers
-- [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) - AI-generated boilerplate
-- [Testing](mdc:.cursor/rules/testing.mdc) - Test patterns for servers
-- [Documentation](mdc:.cursor/rules/documentation.mdc) - Server README templates
+- [Velocity Hub](mdc:.cursor/rules/00-velocity-hub.mdc) - Complete workflow guide
+- [MCP Protocol](mdc:.cursor/rules/20-mcp-protocol.mdc) - MCP standards and tool handlers
+- [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) - AI-generated boilerplate
+- [Testing](mdc:.cursor/rules/11-testing.mdc) - Test patterns for servers
+- [Documentation](mdc:.cursor/rules/12-documentation.mdc) - Server README templates

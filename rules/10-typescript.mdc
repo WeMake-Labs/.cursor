@@ -8,11 +8,11 @@ globs: *.ts,*.tsx
 
 ## Quick Navigation
 
-- 🚀 [Velocity Hub](mdc:.cursor/rules/velocity.mdc) - Start here
-- 🔧 [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) - Type improvements
-- 🧰 [Bun-First Standards](mdc:.cursor/rules/bun-first.mdc) - Bun + TypeScript
-- 🏗️ [MCP Servers](mdc:.cursor/rules/mcp-servers.mdc) - Server type patterns
-- 🧪 [Testing](mdc:.cursor/rules/testing.mdc) - Type safety in tests
+- 🚀 [Velocity Hub](mdc:.cursor/rules/00-velocity-hub.mdc) - Start here
+- 🔧 [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) - Type improvements
+- 🧰 [Bun-First Standards](mdc:.cursor/rules/03-bun-development.mdc) - Bun + TypeScript
+- 🏗️ [MCP Servers](mdc:.cursor/rules/21-mcp-servers.mdc) - Server type patterns
+- 🧪 [Testing](mdc:.cursor/rules/11-testing.mdc) - Type safety in tests
 
 ## Strict Mode Requirements
 
@@ -203,7 +203,7 @@ const result = processData("data"); // ProcessedData (inferred)
 const config: ServerConfig = {
   port: 8787,
   host: "localhost",
-  timeout: 30000
+  timeout: 30000,
 };
 
 // ❌ Redundant explicit type
@@ -257,12 +257,12 @@ function processOperation(input: unknown): Result<ProcessedData> {
     const data = process(input);
     return {
       content: [{ type: "text", text: "Success" }],
-      data
+      data,
     };
   } catch (error) {
     return {
       content: [{ type: "text", text: `Error: ${error.message}` }],
-      isError: true
+      isError: true,
     };
   }
 }
@@ -416,8 +416,8 @@ Reference implementations:
 
 ## See Also
 
-- [Velocity Hub](mdc:.cursor/rules/velocity.mdc) - Complete workflow guide
-- [Bun-First Standards](mdc:.cursor/rules/bun-first.mdc) - Bun + TypeScript patterns
-- [MCP Servers](mdc:.cursor/rules/mcp-servers.mdc) - Server type patterns
-- [Testing](mdc:.cursor/rules/testing.mdc) - Type safety in tests
-- [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) - Type improvements
+- [Velocity Hub](mdc:.cursor/rules/00-velocity-hub.mdc) - Complete workflow guide
+- [Bun-First Standards](mdc:.cursor/rules/03-bun-development.mdc) - Bun + TypeScript patterns
+- [MCP Servers](mdc:.cursor/rules/21-mcp-servers.mdc) - Server type patterns
+- [Testing](mdc:.cursor/rules/11-testing.mdc) - Type safety in tests
+- [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) - Type improvements

@@ -8,10 +8,10 @@ globs: *.md,**/README.md
 
 ## Quick Navigation
 
-- 🚀 [Velocity Hub](mdc:.cursor/rules/velocity.mdc) - Start here
-- 🔧 [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) - Auto-doc generation
-- 🏗️ [MCP Servers](mdc:.cursor/rules/mcp-servers.mdc) - Implementation patterns
-- 📚 [MCP Protocol](mdc:.cursor/rules/mcp-protocol.mdc) - MCP standards
+- 🚀 [Velocity Hub](mdc:.cursor/rules/00-velocity-hub.mdc) - Start here
+- 🔧 [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) - Auto-doc generation
+- 🏗️ [MCP Servers](mdc:.cursor/rules/21-mcp-servers.mdc) - Implementation patterns
+- 📚 [MCP Protocol](mdc:.cursor/rules/20-mcp-protocol.mdc) - MCP standards
 
 All MCP server READMEs must follow a standardized template for consistency and clarity. Reference:
 [README.md](mdc:README.md)
@@ -335,9 +335,9 @@ Common rules:
 
 ## See Also
 
-- [Velocity Hub](mdc:.cursor/rules/velocity.mdc) - Complete workflow guide
-- [MCP Servers](mdc:.cursor/rules/mcp-servers.mdc) - Server implementation patterns
-- [MCP Protocol](mdc:.cursor/rules/mcp-protocol.mdc) - Tool handler templates
-- [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) - AI-generated docs
-- [Enterprise Standards](mdc:.cursor/rules/enterprise-standards.mdc) - Security documentation
+- [Velocity Hub](mdc:.cursor/rules/00-velocity-hub.mdc) - Complete workflow guide
+- [MCP Servers](mdc:.cursor/rules/21-mcp-servers.mdc) - Server implementation patterns
+- [MCP Protocol](mdc:.cursor/rules/20-mcp-protocol.mdc) - Tool handler templates
+- [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) - AI-generated docs
+- [Enterprise Standards](mdc:.cursor/rules/02-enterprise-standards.mdc) - Security documentation
 ```

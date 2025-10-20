@@ -8,11 +8,11 @@ alwaysApply: true
 
 ## Quick Navigation
 
-- 🚀 [Velocity Hub](mdc:.cursor/rules/velocity.mdc) - Start here
-- 🔧 [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) - AI-suggested fixes
-- ☁️ [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc) - Production deployment
-- 🧪 [Testing](mdc:.cursor/rules/testing.mdc) - Testing with Bun
-- 📘 [TypeScript](mdc:.cursor/rules/typescript.mdc) - TypeScript patterns
+- 🚀 [Velocity Hub](mdc:.cursor/rules/00-velocity-hub.mdc) - Start here
+- 🔧 [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) - AI-suggested fixes
+- ☁️ [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc) - Production deployment
+- 🧪 [Testing](mdc:.cursor/rules/11-testing.mdc) - Testing with Bun
+- 📘 [TypeScript](mdc:.cursor/rules/10-typescript.mdc) - TypeScript patterns
 
 ## Core Requirement
 
@@ -53,10 +53,9 @@ Use Bun's native APIs exclusively. External alternatives are PROHIBITED:
 
 ## Production Deployment (Cloudflare Workers)
 
-For production deployments on Cloudflare Workers, Bun-specific APIs must be replaced with Workers-compatible
-alternatives.
+For production deployments on Cloudflare Workers, Bun-specific APIs must be replaced with Workers-compatible alternatives.
 
-**See complete deployment guide:** [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc)
+**See complete deployment guide:** [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc)
 
 ### Key Compatibility Points
 
@@ -78,7 +77,7 @@ src/
   worker.ts          # Workers-compatible (production)
 ```
 
-**Complete guide:** [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc)
+**Complete guide:** [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc)
 
 ## Prohibited Tools
 
@@ -148,7 +147,7 @@ import { Database } from "bun:sqlite";
 
 ```typescript
 // ✅ Correct
-// See [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc)
+// See [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc)
 export interface Env {
   DB: D1Database;
 }
@@ -201,9 +200,100 @@ bun test --coverage  # 80%+ required
 - **Better errors**: Clear, actionable error messages
 - **Works out of the box**: Minimal configuration needed
 
+## Bun Built-in APIs
+
+### HTTP/WebSocket Servers
+
+`Bun.serve()` supports WebSockets, HTTPS, and routes. Don't use `express`.
+
+```typescript
+import index from "./index.html";
+
+Bun.serve({
+  routes: {
+    "/": index,
+    "/api/users/:id": {
+      GET: (req) => {
+        return new Response(JSON.stringify({ id: req.params.id }));
+      },
+    },
+  },
+  // optional websocket support
+  websocket: {
+    open: (ws) => {
+      ws.send("Hello, world!");
+    },
+    message: (ws, message) => {
+      ws.send(message);
+    },
+    close: (ws) => {
+      // handle close
+    },
+  },
+  development: {
+    hmr: true,
+    console: true,
+  },
+});
+```
+
+### Testing
+
+Use `bun test` to run tests.
+
+```typescript
+import { test, expect } from "bun:test";
+
+test("hello world", () => {
+  expect(1).toBe(1);
+});
+```
+
+### Frontend Development
+
+Use HTML imports with `Bun.serve()`. Don't use `vite`. HTML imports fully support React, CSS, Tailwind.
+
+HTML files can import .tsx, .jsx or .js files directly and Bun's bundler will transpile & bundle automatically. `<link>` tags can point to stylesheets and Bun's CSS bundler will bundle.
+
+```html
+<html>
+  <body>
+    <h1>Hello, world!</h1>
+    <script type="module" src="./frontend.tsx"></script>
+  </body>
+</html>
+```
+
+With the following `frontend.tsx`:
+
+```tsx
+import React from "react";
+
+// import .css files directly and it works
+import "./index.css";
+
+import { createRoot } from "react-dom/client";
+
+const root = createRoot(document.body);
+
+export default function Frontend() {
+  return <h1>Hello, world!</h1>;
+}
+
+root.render(<Frontend />);
+```
+
+Then, run `index.ts`
+
+```sh
+bun --hot ./index.ts
+```
+
+For more information, read the Bun API docs in `node_modules/bun-types/docs/**.md`.
+
 ## See Also
 
-- [Velocity Hub](mdc:.cursor/rules/velocity.mdc) - Complete development workflow
-- [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc) - Production deployment
-- [Testing](mdc:.cursor/rules/testing.mdc) - Bun native test runner
-- [TypeScript](mdc:.cursor/rules/typescript.mdc) - TypeScript standards
+- [Velocity Hub](mdc:.cursor/rules/00-velocity-hub.mdc) - Complete development workflow
+- [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc) - Production deployment
+- [Testing](mdc:.cursor/rules/11-testing.mdc) - Bun native test runner
+- [TypeScript](mdc:.cursor/rules/10-typescript.mdc) - TypeScript standards

@@ -8,11 +8,11 @@ alwaysApply: true
 
 ## Quick Navigation
 
-- 🚀 [Velocity Hub](mdc:.cursor/rules/velocity.mdc) - Start here
-- 🔧 [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) - Quality checks
-- 📚 [MCP Protocol](mdc:.cursor/rules/mcp-protocol.mdc) - Security patterns
-- ☁️ [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc) - Production security
-- 📖 [Documentation](mdc:.cursor/rules/documentation.mdc) - Documentation standards
+- 🚀 [Velocity Hub](mdc:.cursor/rules/00-velocity-hub.mdc) - Start here
+- 🔧 [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) - Quality checks
+- 📚 [MCP Protocol](mdc:.cursor/rules/20-mcp-protocol.mdc) - Security patterns
+- ☁️ [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc) - Production security
+- 📖 [Documentation](mdc:.cursor/rules/12-documentation.mdc) - Documentation standards
 
 ## Quick-Reference Security Checklist
 
@@ -226,8 +226,8 @@ function complexLogic(data: Data[]): Result {
 
 ## See Also
 
-- [Velocity Hub](mdc:.cursor/rules/velocity.mdc) - Complete workflow guide
-- [MCP Protocol](mdc:.cursor/rules/mcp-protocol.mdc) - Security patterns for MCP
-- [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc) - Production security
-- [Automation Suggestions](mdc:.cursor/rules/automation-suggestions.mdc) - Quality enforcement
-- [Testing](mdc:.cursor/rules/testing.mdc) - Test coverage requirements
+- [Velocity Hub](mdc:.cursor/rules/00-velocity-hub.mdc) - Complete workflow guide
+- [MCP Protocol](mdc:.cursor/rules/20-mcp-protocol.mdc) - Security patterns for MCP
+- [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc) - Production security
+- [Automation Suggestions](mdc:.cursor/rules/04-automation-suggestions.mdc) - Quality enforcement
+- [Testing](mdc:.cursor/rules/11-testing.mdc) - Test coverage requirements

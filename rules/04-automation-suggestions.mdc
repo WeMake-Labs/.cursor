@@ -11,11 +11,11 @@ quality and human decision-making authority.
 
 ## Quick Navigation
 
-- 🚀 [Velocity Hub](mdc:.cursor/rules/velocity.mdc) - Start here
-- ☁️ [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc) - Deployment guide
-- 🧪 [Testing](mdc:.cursor/rules/testing.mdc) - Testing standards
-- 📘 [TypeScript](mdc:.cursor/rules/typescript.mdc) - Type patterns
-- 🏢 [Enterprise Standards](mdc:.cursor/rules/enterprise-standards.mdc) - Quality standards
+- 🚀 [Velocity Hub](mdc:.cursor/rules/00-velocity-hub.mdc) - Start here
+- ☁️ [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc) - Deployment guide
+- 🧪 [Testing](mdc:.cursor/rules/11-testing.mdc) - Testing standards
+- 📘 [TypeScript](mdc:.cursor/rules/10-typescript.mdc) - Type patterns
+- 🏢 [Enterprise Standards](mdc:.cursor/rules/02-enterprise-standards.mdc) - Quality standards
 
 ## Automation Philosophy
 
@@ -376,7 +376,7 @@ Running automated validations...
    - File: src/index.ts:45
    - Issue: Using Bun.file() (not Workers-compatible)
    - Suggestion: Use Workers APIs or R2 for files
-   - Fix: See [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc)
+   - Fix: See [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc)
 
 2. Environment Variables:
    - Missing: GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET
@@ -408,7 +408,7 @@ export interface Env {
 export default {
   async fetch(request: Request, env: Env) {
     const result = await env.DB.prepare("SELECT * FROM users").all();
-  }
+  },
 };
 ```
 
@@ -423,7 +423,7 @@ Workers Alternative: Cloudflare D1
 📝 Suggested Pattern:
 [Show D1 implementation]
 
-📚 Reference: [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc)
+📚 Reference: [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc)
 
 🤔 Review: Convert to D1 for Workers deployment?
 ```
@@ -765,11 +765,11 @@ The AI adapts suggestions based on context:
 
 Suggestions reference specialized rules when needed:
 
-- **Type Issues** → [TypeScript](mdc:.cursor/rules/typescript.mdc)
-- **Test Gaps** → [Testing](mdc:.cursor/rules/testing.mdc)
-- **Workers Compatibility** → [Workers Deployment](mdc:.cursor/rules/workers-deployment.mdc)
-- **Documentation** → [Documentation](mdc:.cursor/rules/documentation.mdc)
-- **Security** → [Enterprise Standards](mdc:.cursor/rules/enterprise-standards.mdc)
+- **Type Issues** → [TypeScript](mdc:.cursor/rules/10-typescript.mdc)
+- **Test Gaps** → [Testing](mdc:.cursor/rules/11-testing.mdc)
+- **Workers Compatibility** → [Workers Deployment](mdc:.cursor/rules/30-workers-deployment.mdc)
+- **Documentation** → [Documentation](mdc:.cursor/rules/12-documentation.mdc)
+- **Security** → [Enterprise Standards](mdc:.cursor/rules/02-enterprise-standards.mdc)
 
 ## Summary
 
